@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+    
+    <style>
+        .axis path {
+            fill: none;
+            stroke: #777;
+            shape-rendering: crispEdges;
+        }
+        .axis text {
+            font-family: Lato;
+            font-size: 13px;
+        }
+
+        .graph_caption {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .axis_caption {
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .paddingbottomnull {
+            padding-bottom: 0px;
+            position: relative;
+        }
+        .vertical_caption {
+            font-size: 17px;
+            font-weight: bold;
+            height: 25px;
+            left: 150px;
+            position: absolute;
+            top: 340px;
+            transform: rotate(-90deg);
+            transform-origin: left top 0;
+            width: 150px;
+        }
+        /* ==========================================[ Chart Description Box Styles Starts ]====================================================*/
+        .chart_bottom {
+            border: 1px solid;
+            margin: 0 187px 30px 220px;
+            padding: 15px;
+        }
+        .chart_bottom .row.top {
+            
+        }
+        .chart_bottom .row.top .top_cont {
+            
+        }
+        .chart_bottom .row.top .top_cont .line {
+            border-radius: 25%;
+            float: left;
+            height: 4px;
+            margin: 8px 5px 8px 0;
+            width: 30px;
+            
+        }
+        .chart_bottom .row.top .top_cont .line.line_one {
+            background-color: #00ccff;            
+        }
+        .chart_bottom .row.top .top_cont .line.line_two {
+            background-color: #333333;        
+        }
+        .chart_bottom .row.top .top_cont .line.line_three {
+            background-color: #ff00ff;        
+        }
+        .chart_bottom .row.top .top_cont .txt {
+
+        }
+        .chart_bottom .row.bottom {
+            margin-top: 20px;
+        }
+        .chart_bottom .row.bottom .bottom_cont {
+            position: relative;
+        }
+        .chart_bottom .row.bottom .bottom_cont .line {
+            background-color: #000000;
+            border-radius: 25%;
+            float: left;
+            height: 1px;
+            margin: 10px 5px 5px 0;
+            width: 30px;
+            
+        }
+        .chart_bottom .row.bottom .bottom_cont .line.line_one {
+            background-color: #ffff00;            
+        }
+        .chart_bottom .row.bottom .bottom_cont .line.line_two {                    
+        }
+        .chart_bottom .row.bottom .bottom_cont .line.line_three {      
+        }
+        .chart_bottom .row.bottom .bottom_cont .txt {
+
+        }
+        .chart_bottom .row.bottom .bottom_cont .line_icon_one {
+            border-bottom: 10px solid #ffff00;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            height: 0;
+            left: 26px;
+            position: absolute;
+            top: 6px;
+            width: 0;
+        }
+        .chart_bottom .row.bottom .bottom_cont .line_icon_two {
+            background-color: #000000;
+            height: 10px;
+            left: 26px;
+            position: absolute;
+            top: 6px;
+            width: 10px;
+        }
+        .chart_bottom .row.bottom .bottom_cont .line_icon_three {
+            background-color: #000000;
+            height: 10px;
+            left: 26px;
+            position: absolute;
+            border-radius: 50%;
+            top: 6px;
+            width: 10px;
+        }
+
+        .point {
+            background-color: #000000;
+            height: 10px;
+            left: 26px;
+            position: absolute;
+            top: 6px;
+            width: 10px;
+        }
+        /* ==========================================[ Chart Description Box Styles Ends ]====================================================*/
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron paddingbottomnull">
+            <div class="graph_caption">Ratio to Diagnostic Probability</div>
+            <div class="vertical_caption">% Probability</div>
+            <svg id="visualisation" width="800" height="400"></svg>
+            <script type="text/javascript" src="lib/v3.5.12/d3.min.js" charset="utf-8"></script>
+            <script type="text/javascript">
+                    var lineData = [{
+                        "Probability": "100",
+                        "Ratio": "0.603"
+                    }, {
+                        "Probability": "100",
+                        "Ratio": "0.614"
+                    }, {
+                        "Probability": "100",
+                        "Ratio": "0.624"
+                    }, {
+                        "Probability": "99.98",
+                        "Ratio": "0.629"
+                    }, {
+                        "Probability": "99.92",
+                        "Ratio": "0.634"
+                    }, {
+                        "Probability": "99.63",
+                        "Ratio": "0.640"
+                    }, {
+                        "Probability": "98.31",
+                        "Ratio": "0.645"
+                    }, {
+                        "Probability": "92.74",
+                        "Ratio": "0.650"
+                    }, {
+                        "Probability": "73.69",
+                        "Ratio": "0.655"
+                    }, {
+                        "Probability": "38.04",
+                        "Ratio": "0.660"
+                    }, {
+                        "Probability": "20",
+                        "Ratio": "0.663"
+                    }, {
+                        "Probability": "11.86",
+                        "Ratio": "0.666"
+                    }, {
+                        "Probability": "6.83",
+                        "Ratio": "0.666"
+                    }, {
+                        "Probability": "5.13",
+                        "Ratio": "0.666"
+                    }, {
+                        "Probability": "3.84",
+                        "Ratio": "0.666"
+                    }, {
+                        "Probability": "2.86",
+                        "Ratio": "0.666"
+                    }, {
+                        "Probability": "0.64",
+                        "Ratio": "0.666"
+                    }, {
+                        "Probability": "0.14",
+                        "Ratio": "0.681"
+                    }, {
+                        "Probability": "0.03",
+                        "Ratio": "0.686"
+                    }, {
+                        "Probability": "0.01",
+                        "Ratio": "0.692"
+                    }, {
+                        "Probability": "0",
+                        "Ratio": "0.697"
+                    }, {
+                        "Probability": "0.84",
+                        "Ratio": "0.718"
+                    }, {
+                        "Probability": "2.16",
+                        "Ratio": "0.728"
+                    }, {
+                        "Probability": "5.45",
+                        "Ratio": "0.738"
+                    }, {
+                        "Probability": "13.05",
+                        "Ratio": "0.749"
+                    }, {
+                        "Probability": "20",
+                        "Ratio": "0.754"
+                    }, {
+                        "Probability": "28.12",
+                        "Ratio": "0.759"
+                    }, {
+                        "Probability": "50.48",
+                        "Ratio": "0.77"
+                    }, {
+                        "Probability": "72.65",
+                        "Ratio": "0.78"
+                    }, {
+                        "Probability": "87.38",
+                        "Ratio": "0.79"
+                    }, {
+                        "Probability": "94.75",
+                        "Ratio": "0.801"
+                    }, {
+                        "Probability": "97.92",
+                        "Ratio": "0.811"
+                    }, {
+                        "Probability": "99.19",
+                        "Ratio": "0.822"
+                    }, {
+                        "Probability": "99.69",
+                        "Ratio": "0.832"
+                    }, {
+                        "Probability": "99.88",
+                        "Ratio": "0.842"
+                    }, {
+                        "Probability": "99.95",
+                        "Ratio": "0.853"
+                    }, {
+                        "Probability": "99.98",
+                        "Ratio": "0.863"
+                    }, {
+                        "Probability": "99.99",
+                        "Ratio": "0.874"
+                    }, {
+                        "Probability": "100.00",
+                        "Ratio": "0.884"
+                    }];
+
+                function InitChart(data) {
+                    var vis = d3.select("#visualisation"),
+                        WIDTH = 800,
+                        HEIGHT = 400,
+                        MARGINS = {
+                            top: 20,
+                            right: 20,
+                            bottom: 20,
+                            left: 50
+                        },
+
+                        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0.6, 0.9]),
+                        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0, 100]),
+
+                        xAxis = d3.svg.axis()
+                        .scale(xScale),
+
+                        yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient("left");
+
+                        vis.append("svg:g")
+                            .attr("class", "x axis")
+                            .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+                            .call(xAxis);
+
+                        vis.append("svg:g")
+                            .attr("class", "y axis")
+                            .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+                            .call(yAxis);
+
+
+                    var lineGen = d3.svg.line()
+                        .x(function(d) {
+                            return xScale(d.Ratio);
+                        })
+                        .y(function(d) {
+                            return yScale(d.Probability);
+                        })
+                        .interpolate("basis");
+
+                        vis.append('svg:path')
+                            .attr("d", lineGen(data.filter(function(d) {
+                                return d.Ratio <= 0.663;
+                            })))
+                            .attr('stroke', '#00ccff')
+                            .attr('stroke-width', 4)
+                            .attr('fill', 'none');
+
+                        vis.append('svg:path')
+                            .attr("d", lineGen(data.filter(function(d) {
+                                return d.Ratio >= 0.663;
+                            })))
+                            .attr('stroke', '#333333')
+                            .attr('stroke-width', 4)
+                            .attr('fill', 'none');
+
+                        vis.append('svg:path')
+                            .attr("d", lineGen(data.filter(function(d) {
+                                return d.Ratio >= 0.754;
+                            })))
+                            .attr('stroke', '#ff00ff')
+                            .attr('stroke-width', 4)
+                            .attr('fill', 'none');
+
+
+                    var jsonCircles = [{ "x_axis": 413, "y_axis": 328, "radius": 10, "color" : "black"}];
+
+                    var circles = vis.selectAll("circle")
+                                              .data(jsonCircles)
+                                              .enter()
+                                              .append("circle");
+
+                    var circleAttributes = circles
+                                           .attr("cx", function (d) { return d.x_axis; })
+                                           .attr("cy", function (d) { return d.y_axis; })
+                                           .attr("r", function (d) { return d.radius; })
+                                           .style("fill", function(d) { return d.color; });
+
+                    var arc = d3.svg.symbol().type('triangle-up')
+                                        .size(function(d){ return scale(d); });
+
+                    var data = [2];
+                    
+                    var scale = d3.scale.linear()
+                                    .domain([1,6])
+                                    .range([100,1000]);
+
+                    var group = vis.append('g')
+                                .attr('transform','translate('+ 539 +','+ 35 +')');
+
+                    var line = group.selectAll('path')
+                            .data(data)
+                            .enter()
+                            .append('path')
+                            .attr('d',arc)
+                            .attr('fill','yellow')
+                            .attr('stroke','yellow')
+                            .attr('stroke-width',0)
+                            .attr('transform',function(d,i){ return "translate("+(i*38)+","+(10)+")"; });
+
+
+                    var squr = d3.svg.symbol().type('square')
+                                        .size(function(d){ return scale(d); });
+
+                    var rectgroup = vis.append('g')
+                                .attr('transform','translate('+ 655 +','+ 10 +')');
+
+                    var line = rectgroup.selectAll('path')
+                            .data(data)
+                            .enter()
+                            .append('path')
+                            .attr('d',squr)
+                            .attr('fill','black')
+                            .attr('stroke','black')
+                            .attr('stroke-width',0)
+                            .attr('transform',function(d,i){ return "translate("+(i*38)+","+(10)+")"; });
+
+                }
+                InitChart(lineData);
+            </script>
+            <div class="axis_caption">Ratio Value</div>
+        </div>
+
+        <div class="chart_bottom">
+            <div class="row top">
+                <div class="col-md-4 top_cont">
+                    <span class="line line_one"></span>
+                    <span class="txt">Series1</span>
+                </div>
+                <div class="col-md-4 top_cont">
+                    <span class="line line_two"></span>
+                    <span class="txt">Series2</span>
+                </div>
+                <div class="col-md-4 top_cont">
+                    <span class="line line_three"></span>
+                    <span class="txt">Series3</span>
+                </div>
+            </div>
+            <div class="row bottom">
+                <div class="col-md-4 bottom_cont">
+                    <span class="line line_one"></span>
+                    <span class="line_icon_one"></span>
+                    <span class="txt">PPD2 : 0.802</span>
+                </div>
+                <div class="col-md-4 bottom_cont">
+                    <span class="line line_two"></span>
+                    <span class="line_icon_two"></span>
+                    <span class="txt">0.65 MPR : 0.85</span>
+                </div>
+                <div class="col-md-4 bottom_cont">
+                    <span class="line line_three"></span>
+                    <span class="line_icon_three"></span>
+                    <span class="txt">0.75 MPR :</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    
+</body>
+
+</html>
